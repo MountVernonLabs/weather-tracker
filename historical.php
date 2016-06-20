@@ -1,9 +1,6 @@
 <?php
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "mv-dev";
+include "config.php";
 
 $date = '2016-06-17';
 $end_date = '1945-01-01';
@@ -14,7 +11,7 @@ date_default_timezone_set('America/New_York');
       // Show Year
       echo "Getting weather for ".date("Y-m-d",strtotime($date))."\n";
 
-      $weather_data = file_get_contents("https://www.wunderground.com/history/airport/KDAA/".date("Y",strtotime($date))."/".date("n",strtotime($date))."/".date("j",strtotime($date))."/DailyHistory.html?req_city=Mount+Vernon&req_state=VA&req_statename=Virginia&reqdb.zip=22121&reqdb.magic=1&reqdb.wmo=99999&format=2");
+      $weather_data = file_get_contents("https://www.wunderground.com/history/airport/KDAA/".date("Y",strtotime($date))."/".date("n",strtotime($date))."/".date("j",strtotime($date))."/DailyHistory.html?reqdb.zip=".$zip."&reqdb.magic=1&reqdb.wmo=99999&format=2");
       $weather_data = str_replace("<br />","",$weather_data);
 
       $weather_entries = explode("\n",$weather_data);
@@ -24,7 +21,7 @@ date_default_timezone_set('America/New_York');
           if ($data[0] == "TimeEDT" || $data[0]==""){}else{
             //echo $data[0]."\n";
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($mysql_host, $mysql_login, $mysql_pass, $database);
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }

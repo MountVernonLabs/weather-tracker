@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 4096
+# Version 4541
 #
 # http://www.sequelpro.com/
-# http://code.google.com/p/sequel-pro/
+# https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.6.12)
-# Database: weather
-# Generation Time: 2015-06-16 15:29:39 +0000
+# Host: 127.0.0.1 (MySQL 5.6.26)
+# Database: mv-dev
+# Generation Time: 2016-06-20 00:29:26 +0000
 # ************************************************************
 
 
@@ -39,6 +39,8 @@ CREATE TABLE `weather` (
   `wind_speed` int(11) DEFAULT NULL,
   `wind_direction` int(11) DEFAULT NULL,
   `cloud_coverage` int(11) DEFAULT NULL,
+  `visability` varchar(255) DEFAULT NULL,
+  `precipitiation` int(11) DEFAULT NULL,
   PRIMARY KEY (`time`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
